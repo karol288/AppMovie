@@ -1,0 +1,28 @@
+<app-buscador/><!--se añade el buscador-->
+
+
+<div class="peliculas" > <!--se añaden las peliculas-->
+  <!--se hace un bucle se usa ngFor que es para generar una esctructura de control en la variable movie se va a almacenar todo lo que tiene la MovieList es decir la informacion de las peliculas-->
+  <div
+  *ngFor="let movie of moviesList"
+  class="card m-2 shadow-lg bg-dark text-light hover-scale"
+  style="width: 150px; height: 300px; cursor: pointer; overflow: hidden; border-radius: 0.5rem;"
+
+>
+<!--el click es para que me lleve a los detalles de las peliculas-->
+  <img (click)="clickPelicula(movie)" class="card-img-top" [src]="environments.imagenUrl + movie.poster_path" alt="poster de la pelicula" style="height: 192px; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;  " />
+  <div class="card-body d-flex flex-column justify-content-between" style="height: calc(100% - 192px); padding: 0.5rem;">
+
+    <h3 class="mt-2 text-center text-truncate" style="font-size: 0.875rem; font-weight: 600; color: white;">
+      {{ movie.title }}
+    </h3>
+    <div class="d-flex justify-content-center">
+      <i *ngFor="let estrella of estrellas(movie.vote_average)" class="bi bi-star-fill text-warning"></i>{{movie.vote_average | number:'1.1-1'}} <!--para mostrar solo un decimal usamor un filtro que me da solo dos decimales-->
+    </div>
+    <!--aca se esta pasando el titulo ya que este es una propiedad de la interface-->
+    <!-- <p class="text-center" style="font-size: 0.75rem; color: #9ca3af;">{{ movie.release_date }}</p> -->
+    <button type="button" class="btn btn-outline-light" [routerLink]= "['/home', movie.id]"
+    style="font-size: 0.8rem;">mas informacion</button>
+  </div>
+</div>
+</div>

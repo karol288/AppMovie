@@ -1,0 +1,10 @@
+.peliculas{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hover-scale:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
