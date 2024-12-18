@@ -1,0 +1,32 @@
+.peliculas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  /* Contenedor del mensaje de error */
+.error-message {
+  background-color: #ffcc00; /* Amarillo más suave */
+  color: #333333; /* Texto oscuro para mejor legibilidad */
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem; /* Tamaño de fuente ligeramente más grande */
+  padding: 15px 20px; /* Espaciado más equilibrado */
+  border-radius: 8px; /* Bordes redondeados más elegantes */
+  margin: 20px auto; /* Centra el mensaje horizontalmente */
+  max-width: 600px; /* Limita el ancho máximo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+  margin-top: 100px;
+}
+.buscar-pelicula {
+  color: #000000; /* Texto oscuro para mejor legibilidad */
+  font-weight: bold;
+  font-size: 2rem; /* Tamaño de fuente ligeramente más grande */
+  padding: 15px 20px; /* Espaciado más equilibrado */
+  margin-top: 100px;
+}

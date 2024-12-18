@@ -4,5 +4,29 @@
   <h3>{{pelicula?.title}}</h3>
   <p>{{pelicula?.overview}}</p>
 
+  <h4>Genero: </h4>
+  <ul>
+    <li *ngFor="let genero of pelicula?.genres">{{genero.name}}</li>
+  </ul>
+
+  <h4>Reparto: </h4>
+  <div class="reparto">
+    <div *ngFor="let actor of actores" class="actor-card">
+      <img *ngIf="actor.profile_path" [src]="environments.imagenUrl + actor.profile_path"  alt="{{actor.name}}">
+      <p>
+        <strong>{{actor.name}}</strong> participa como {{actor.character}}
+      </p>
+    </div>
+  </div>
+
+
+  <h4>Equipo tecnico: </h4>
+  <div class="equipo">
+    <div *ngFor="let equipo of equipo" class="equipo-card">
+      <strong>{{equipo.name}}</strong> - {{equipo.job}}
+
+    </div>
+
+  </div>
 </div>
 

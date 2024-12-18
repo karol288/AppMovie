@@ -3,16 +3,22 @@ import { Pelicula } from '../models/peliculas.models';
 import { MoviesService } from '../providers/peliculas.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment.development';
+import { Cast, Creditos } from '../models/creditos.models';
+import { CommonModule } from '@angular/common';
+import { PeliculaDetalle } from '../models/peliculaDetalle.models';
 
 @Component({
   selector: 'app-detalle-peliculas',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './detalle-peliculas.component.html',
   styleUrl: './detalle-peliculas.component.css'
 })
 export class DetallePeliculasComponent implements OnInit{
 
-  pelicula?:Pelicula; //va a estar tipada para que siga la estructura de la interface de pelicula
+  pelicula?:PeliculaDetalle; //va a estar tipada para que siga la estructura de la interface de peliculaDetalle
+  creditos?: Creditos; // Créditos de la película
+  actores: Cast[] = []; // Lista de actores
+  equipo: Cast[] = []; // Lista de equipo técnico
 
   environments = environment //para usar las url de las imagenes
 
@@ -25,20 +31,48 @@ export class DetallePeliculasComponent implements OnInit{
       const movieId = params.get('peliculaId'); // Obtenemos el id del parámetro, el param.get es para decir que de todo lo que esta en la URL me cosiga lo que este en el lugar que yo llame peliculaId
 
       if (movieId) { //si tenemos movieId
-        // Llamamos al servicio para obtener la película por id
-        this.moviesService.getMovieById(movieId).subscribe({ // aca le pasamos el id, y le decimos a suscribe
-          next: (movie) => { //lo que va a recibir el subscribe lo voy a guardar en movie
-            console.log(movie);
+        // Llamamos a la funcion para ver los detalles de las peliculas
+        this.getMovieDetails(movieId)
 
-            const pelicula = movie as Pelicula;  //aca creo una constante que va a ser pelicula y a esta le voy a pasar lo que recibi en movie y le voy a decir que se comporte como la interface de pelicula
-
-            this.pelicula = pelicula; //asignamos la película obtenida
-          },
-          error: (error) => {
-            console.error( error); //mostramos el error
-          }
-        });
+        // llamamos a la funcion para ver los creditos o el reparto de las peliculas
+        this.getMovieCredits(movieId)
       }
     });
   }
+
+  //funcion para ver los detalles de las peliculas
+  private getMovieDetails(movieId: string): void{
+
+    this.moviesService.getMovieById(movieId).subscribe({ // aca le pasamos el id, y le decimos a suscribe
+      next: (movie) => { //lo que va a recibir el subscribe lo voy a guardar en movie
+        console.log(movie);
+
+        const pelicula = movie as PeliculaDetalle;  //aca creo una constante que va a ser pelicula y a esta le voy a pasar lo que recibi en movie y le voy a decir que se comporte como la interface de pelicula
+
+        this.pelicula = pelicula; //asignamos la película obtenida
+      },
+      error: (error) => {
+        console.error( 'Error obteniendo detalles:', error); //mostramos el error
+      }
+
+    });
+  }
+
+  //funcion para el reparto
+  private getMovieCredits(movieId: string): void {
+
+  this.moviesService.getCreditsMovie(movieId).subscribe({
+    next: (credits) => {
+
+      const creditos = credits as Creditos;
+
+      this.creditos = creditos
+
+      this.actores =creditos.cast
+      this.equipo = creditos.crew
+      console.log('Créditos:', credits);
+    },
+    error: (error) => console.error('Error obteniendo créditos:', error)
+  });}
+
 }
