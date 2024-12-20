@@ -41,7 +41,7 @@ export class PeliculasPorGeneroComponent implements OnInit {
 
             // Filtrar las películas por género
             const peliculasFiltradas = response.results.filter((pelicula: Pelicula) => //filter revisa cada elemento y decide si lo incluye o no
-            //y es pelicula:pelicula ya que las peliculas que pase el filter van a ser tipo Pelicula
+              // y es pelicula:pelicula ya que las peliculas que pase el filter van a ser tipo Pelicula
               pelicula.genre_ids.includes(this.generoId)// aca revisamos si el genero pedido esta dento de la lista
             );
 
