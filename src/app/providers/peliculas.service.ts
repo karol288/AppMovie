@@ -11,7 +11,6 @@ export class MoviesService { //Movie service va a ser una clase que va a llevar 
   private readonly environments = environment; // a la constante environments se le esta pasando las variables de entorno que tengo yo creadas
 
   getMovies(page: number) {  //va a recibir las paginas que nos va dando la api
-    console.log(page);
 
     return this.http.get(this.environments.getMoviesUrl, {
       headers: {
@@ -36,6 +35,23 @@ export class MoviesService { //Movie service va a ser una clase que va a llevar 
       headers: {
         Authorization: `Bearer ${this.environments.readToken}`,
       },
+    });
+  }
+
+  getMovie(texto:string){
+    return this.http.get(`${this.environments.getMovie}`, {
+      params:{ query: texto}, //query es para decirle que quiero que me busque texto es decir lo que vaya a ingresar el usuario
+      headers: {
+        Authorization: `Bearer ${this.environments.readToken}`,
+      }
+    });
+  }
+
+  getCreditsMovie(id:string){
+    return this.http.get(`${this.environments.getCreditsMovie}/${id}/credits`, {
+      headers: {
+        Authorization: `Bearer ${this.environments.readToken}`,
+      }
     });
   }
 }

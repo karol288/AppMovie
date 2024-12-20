@@ -1,0 +1,11 @@
+<div class="navbar">
+  <form class="d-flex">
+    <select class="form-select" (change)="pasarAGenero($event)">
+      <option value="" disabled selected>Selecciona un género</option>
+      <option *ngFor="let genero of generos" [value]="genero.id">{{ genero.name }}</option>
+    </select>
+
+    <input #txtBuscar class="form-control" type="search" placeholder="Buscar...">
+    <button type="button" class="btn" (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
+  </form>
+</div>

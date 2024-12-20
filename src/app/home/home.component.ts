@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit,inject } from '@angular/core';
-import { BuscadorComponent } from '../buscador/buscador.component';
+import { navbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Pelicula } from '../models/peliculas.models';
 import { environment } from '../../environments/environment.development';
@@ -9,13 +9,14 @@ import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [BuscadorComponent, CommonModule,RouterModule],
+  imports: [navbarComponent, CommonModule,RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 
 export class HomeComponent implements OnInit { // yo le digo implement onInit para decirle que a esta clase le voy a añadir una interface que lleva una funcion
-  title = 'AppMovie';
+
+
   moviesList: Pelicula[] = []; // a moviesList la estoy tipando con Pelicula[] diciendole que lo que va a recibir debe llevar esa interface
 
   page: number = 1; // Página actual (empezamos con la página 1) la que me inicia a dar la API
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
   environments = environment //para usar las url de las imagenes
 
   private readonly moviesService = inject(MoviesService); //le inyecto la clase movieServe
-  private readonly router = inject(Router);
+
+  private readonly router = inject(Router); //Para llevarme a la ruta de peliculaId
 
 
   ngOnInit(): void {
@@ -32,7 +34,8 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
   }
 
 
-  loadMovies(): void {
+  loadMovies(): void { //void no haga nada pero si algo con los datos
+
     if (this.loading) return; // Evitar que se haga la solicitud si ya estamos cargando peliculas
 
     this.loading = true; // Activamos el estado de carga si pide mas peliculas
@@ -40,15 +43,20 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
     // Llamamos al servicio para obtener las películas de la página actual
     this.moviesService.getMovies(this.page).subscribe({ // le pasamos this.page es la que tiene la pagina actual, usamos el suscribe para continuar
       next: (data) => {
+
         console.log(data);
 
         const res = data as ResponseGetMovies; // aca le estoy diciendo a data que se comporte como responseGetMovies pero solo en la constante res
 
-        this.moviesList = [...this.moviesList, ...res.results]; // Agregamos las nuevas películas a la lista
+        this.moviesList = [...this.moviesList, ...res.results]; // Agregamos las nuevas películas a la lista el operador ... es para combinar entonces
+        //...this.movieslist y ...res.results se van a combinar y todas se van a guardar en moviesList
+
         console.log(res.results);
 
 
         this.page++; // Aumentamos la página para la siguiente solicitud es decir pide otra pagina va pagina 1 que la 2 y asi sucesivamente
+        console.log(this.page);
+
         this.loading = false; // Desactivamos el estado de carga
       },
       error: (error) => {
@@ -59,7 +67,7 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
   }
 
 
-  // Función para redirigir a la página de detalles
+  // Función para mandarme a la página de detalles-pelicula
   clickPelicula(movie: Pelicula): void {
     this.router.navigate([`/home`, movie.id]);  // Redirige a la ruta home/:peliculaId
   }
@@ -84,11 +92,20 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
     }
   }
 
+  //funcion para pasar puntos a estrellitas
   estrellas(votos:number){ //aca me va a recibir la puntuacion es decir el movie.vote_average
-    const contadorEstrellas = Math.floor(votos) // voy a convertir los decimales que el recibe a un entero
-    return Array(contadorEstrellas).fill(0) // aca el entero que recibe los va a convertir en ceros
-    //si recibe 6 el arreglo va a ser [0 0 0 0 0 0] y esas van a ser las estrellas a mostrar
 
+    // Verifica si 'votos' es un número válido
+   if (isNaN(votos) || votos < 0) {//isNaN  es una funcion que se utliza para identificar si el valor no es un numero
+    votos = 0; // Si no es un numero , asigna 0
+    }
+    const contadorEstrellas = Math.floor(votos) // voy a convertir los decimales que el recibe a un entero
+     // Si 'contadorEstrellas' es negativo o cero, asegura que el arreglo tenga al menos un valor
+      if (contadorEstrellas <= 0) {
+        return Array(1).fill(0); // Mínimo un cero (estrella)
+        }
+        return Array(contadorEstrellas).fill(0) // aca el entero que recibe los va a convertir en ceros
+        //si recibe 6 el arreglo va a ser [0 0 0 0 0 0] y esas van a ser las estrellas a mostrar
   }
 
 }

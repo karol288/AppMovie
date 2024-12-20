@@ -1,0 +1,84 @@
+.img{
+  width: 55%;
+  height: auto;
+  border: 2px solid white;
+  margin-top: 11%;
+  margin-left: 10%;
+}
+.titulo{
+  margin-top: -40%;
+  margin-left: 35%;
+  color: rgb(224, 212, 212);
+}
+
+.Sinopsis{
+  margin-left: 35%;
+  margin-top: 1%;
+}
+
+h4{
+  color: white;
+}
+
+p{
+  color: antiquewhite;
+  width: 50%;
+}
+
+.fecha{
+  margin-left: 35%;
+}
+
+.Calificacion{
+  margin-left: 35%;
+}
+
+.link p{
+  margin-left: 35%;
+  display: flex;
+}
+
+.link p, .link a {
+  margin-right: 10px;
+  display: inline;
+}
+
+.genero{
+  margin-left: 35%;
+
+}
+
+.genero h5 {
+  color: white;
+}
+
+.genero li{
+  color:aliceblue
+}
+
+.reparto h3{
+  margin-top: 15%;
+  margin-left: 2%;
+  color: white;
+}
+
+.actores{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  justify-items: center;
+  padding: 20px;
+}
+
+.actores img{
+  width: 95%;
+  height: auto;
+  border: 5px solid rgb(119, 118, 118);
+  border-radius: 10%;
+}
+
+
+.actor-info{
+  margin-top: 3%;
+  margin-left: 9%;
+}

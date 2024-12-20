@@ -1,0 +1,76 @@
+/* Contenedor principal de las películas */
+.contenedor-peliculas {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  padding: 10px;
+  margin-top: 100px;
+}
+
+
+/* Mensaje cuando no hay películas */
+.mensaje-vacio {
+  color: aliceblue;
+  text-align: center; /* Centra el texto */
+  font-size: 1rem; /* Tamaño del texto */
+  margin-top: 20px; /* Espacio superior */
+}
+
+/* Tarjeta de cada película */
+.tarjeta-pelicula {
+  width: 150px; /* Ancho de la tarjeta */
+  height: 300px; /* Altura de la tarjeta */
+  margin: 10px; /* Espacio entre tarjetas */
+  cursor: pointer; /* Cambia el cursor al pasar sobre la tarjeta */
+  overflow: hidden; /* Oculta contenido desbordado */
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: #2d2d2d; /* Fondo de la tarjeta */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra */
+  transition: transform 0.2s ease-in-out; /* Suaviza la animación al pasar */
+}
+
+.tarjeta-pelicula:hover {
+  transform: scale(1.05); /* Agranda ligeramente la tarjeta al pasar el ratón */
+}
+
+/* Imagen de la película */
+.imagen-pelicula {
+  width: 100%; /* Ancho completo de la tarjeta */
+  height: 192px; /* Altura fija */
+  object-fit: cover; /* Ajusta la imagen al tamaño del contenedor */
+  border-top-left-radius: 8px; /* Bordes redondeados superiores */
+  border-top-right-radius: 8px;
+}
+
+/* Contenedor de los detalles de la película */
+.detalles-pelicula {
+  padding: 10px; /* Espacio interno */
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: space-between; /* Espacia los elementos dentro */
+  height: calc(100% - 192px); /* Resta la altura de la imagen */
+}
+
+/* Título de la película */
+.titulo-pelicula {
+  font-size: 0.875rem; /* Tamaño del texto */
+  font-weight: 600; /* Negrita */
+  color: white;
+  text-align: center; /* Centra el texto */
+  line-height: 1.2; /* Altura de línea */
+  word-wrap: break-word; /* Permite que el texto se divida en varias líneas */
+}
+
+/* Puntuación de la película */
+.puntuacion-pelicula {
+  display: flex;
+  justify-content: center; /* Centra las estrellas */
+  align-items: center; /* Alinea las estrellas verticalmente */
+}
+
+/* Fecha de lanzamiento */
+.fecha-lanzamiento {
+  font-size: 0.75rem; /* Tamaño del texto */
+  color: #9ca3af; /* Color gris */
+  text-align: center; /* Centra el texto */
+}

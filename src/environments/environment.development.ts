@@ -4,5 +4,8 @@ export const environment = {
   getMoviesUrl: 'https://api.themoviedb.org/3/discover/movie',//ver peliculas
   getMovieByIdUrl: 'https://api.themoviedb.org/3/movie', //para encontrar por id la pelicula
   getGenresUrl: 'https://api.themoviedb.org/3/genre/movie/list', //ver por genero
-  imagenUrl:'https://image.tmdb.org/t/p/original' //ver las imagenes de las peliculas
+  imagenUrl:'https://image.tmdb.org/t/p/original', //ver las imagenes de las peliculas
+  getMovie: 'https://api.themoviedb.org/3/search/movie', //encontrar pelicula
+  getDetailsMovie: 'https://api.themoviedb.org/3/movie',// para los detalles de las peliculas
+  getCreditsMovie :'https://api.themoviedb.org/3/movie' //para los creditos de las peliculas
 };

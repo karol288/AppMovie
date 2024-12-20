@@ -1,8 +1,55 @@
-<div class="detalles-pelicula">
-
-  <img class="card-img-top" [src]="environments.imagenUrl + pelicula?.poster_path" alt="poster de la pelicula" style="height: 192px; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;  " />
-  <h3>{{pelicula?.title}}</h3>
-  <p>{{pelicula?.overview}}</p>
-
+<div class="col-6">
+  <img class="img" [src]="environments.imagenUrl + pelicula?.poster_path" alt="poster de la pelicula" />
 </div>
 
+<!--Informacion sobre la pelicula-->
+
+<h2 class="titulo">{{pelicula?.title}}</h2>
+
+<p class="Calificacion">Calificacion: {{pelicula?.vote_average}}</p>
+
+
+<div class="Sinopsis">
+  <h4 >Sinopsis: </h4>
+  <p>{{pelicula?.overview}}</p>
+  <p *ngIf="!pelicula?.overview">No hay sinopsis</p>
+</div>
+
+
+
+<div class="genero">
+<h5>Generos: </h5>
+<ul>
+  <li *ngFor="let genero of pelicula?.genres">
+    {{genero.name}}
+  </li>
+</ul>
+</div>
+
+<div class="link">
+  <p>Enlace sitio oficial: </p>
+  <a href="{{pelicula?.homepage}}" target="_blank">{{pelicula?.homepage}}</a>
+  <a *ngIf="!pelicula?.homepage" style="color: white;">no hay sitio oficial</a>
+</div>
+
+
+<div class="fecha">
+  <p class="text-warning">Fecha de estreno: {{pelicula?.release_date | date: 'dd/MM/yyyy'}} </p>
+</div>
+
+<div class="reparto">
+  <h3>Reparto: </h3>
+  <div class="actores">
+    <div *ngFor="let actor of actores">
+
+      <img *ngIf="actor.profile_path" [src]="environments.imagenUrl + actor.profile_path" alt="{{actor.name}}">
+      <img *ngIf="!actor.profile_path" src="/imagenes/img_no_encontrada.jpg" alt="imagen no encontrada">
+
+      <div class="actor-info">
+        <p>{{actor.original_name}} COMO: {{actor.character}}</p>
+
+        </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<!--Aca se van a mostrar las peliculas que el usuario esta buscando -->
+
+<div class="buscar-pelicula" style="color: antiquewhite;"><h3>Buscando pelicula: {{texto}}</h3></div>
+<div *ngIf="noPelicula"
+     class="error-message ">
+     {{ noPelicula }}
+</div>
+
+<!--el contenedor de peliculas va a tener el diseño de las peliculas y va a mostrar las peliculas pedidas -->
+<div class=" d-flex flex-wrap justify-content-center">
+  <div *ngIf="peliculas.length > 0">
+    <div *ngFor="let pelicula of peliculas"
+    class="card m-2 shadow-lg bg-dark text-light hover-scale"
+    style="width: 150px; height: 300px; cursor: pointer; overflow: hidden; border-radius: 0.5rem;">
+
+    <img (click)="clickPelicula(pelicula)" class="card-img-top" [src]="environments.imagenUrl + pelicula.poster_path" alt="poster de la pelicula" style="height: 192px; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;  " />
+
+    <h3 class="mt-2 text-center text-truncate" style="font-size: 0.875rem; font-weight: 600; color: white;">
+      {{ pelicula.title }}
+    </h3>
+    <div class="d-flex justify-content-center">
+      <i *ngFor="let estrella of estrellas(pelicula.vote_average)" class="bi bi-star-fill text-warning"></i>{{pelicula.vote_average | number:'1.1-1'}} <!--para mostrar solo un decimal usamor un filtro que me da solo dos decimales-->
+    </div>
+    <!--aca se esta pasando el titulo ya que este es una propiedad de la interface-->
+     <p class="text-center" style="font-size: 0.75rem; color: #9ca3af;">{{ pelicula.release_date }}</p>
+  </div>
+  <!--aca vamos a colocar un condicional para que muestre el error al usuario -->
+
+</div>
+
+

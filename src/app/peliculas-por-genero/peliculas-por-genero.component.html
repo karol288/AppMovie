@@ -1,0 +1,42 @@
+<div class="contenedor-peliculas">
+
+  <div *ngIf="pelicula.length === 0" class="mensaje-vacio">
+    No hay películas disponibles para este género.
+  </div>
+
+  <div
+    *ngFor="let pelicula of pelicula"
+    class="tarjeta-pelicula"
+  >
+    <!-- Imagen de la película -->
+    <img
+      (click)="clickPelicula(pelicula)"
+      [src]="environment.imagenUrl + pelicula.poster_path"
+      alt="Poster de la película"
+      class="imagen-pelicula"
+    />
+
+    <!-- Detalles de la película -->
+    <div class="detalles-pelicula">
+      <!-- Título -->
+      <h3 class="titulo-pelicula">
+        {{ pelicula.title }}
+      </h3>
+
+      <!-- Puntuación -->
+      <div class="puntuacion-pelicula">
+        <i
+          *ngFor="let estrella of estrellas(pelicula.vote_average)"
+          class="bi bi-star-fill text-warning"
+          style="font-size: 0.65rem; margin-right: 0.2rem;"
+        ></i>
+        {{ pelicula.vote_average | number: '1.1-1' }}
+      </div>
+
+      <!-- Fecha de lanzamiento -->
+      <p class="fecha-lanzamiento">
+        {{ pelicula.release_date }}
+      </p>
+    </div>
+  </div>
+</div>
