@@ -1,32 +1,19 @@
-<<<<<<< HEAD
-<div class="navbar">
-  <form class="d-flex">
-    <select class="form-select" (change)="pasarAGenero($event)">
-      <option value="" disabled selected>Selecciona un género</option>
-      <option *ngFor="let genero of generos" [value]="genero.id">{{ genero.name }}</option>
-    </select>
-
-    <input #txtBuscar class="form-control" type="search" placeholder="Buscar...">
-    <button type="button" class="btn" (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
-  </form>
-=======
-
 <div class="navbar">
 
   <form class="d-flex" role="search">
-    <select class="form-select form-select-sm" aria-label="Small select example" name="" id="">
-      <option selected>Generos</option>
-      <option value="romance">romance</option>
-      <option value="comedia">Comedia</option>
-      <option value="3">Three</option>
-
+    <!-- Selección de género, se pasan los géneros al componente -->
+    <select class="form-select" (change)="pasarAGenero($event)">
+      <option value="" disabled selected>Selecciona un género</option>
+      <!-- Se iteran los géneros y se crea una opción para cada uno -->
+      <option *ngFor="let genero of generos" [value]="genero.id">{{ genero.name }}</option>
     </select>
-    <div class="buscador"> <!--en la linea 13 se coloca un identificador llamado txtBuscar, luego colocamos que el usuario al hacer enter ((keyup.enter) lo lleve a la funcion de buscar la pelicula y le pasamos el valor es decir lo que escribio la persona )-->
+
+    <div class="buscador">
+      <!-- En la línea 13 se coloca un identificador llamado txtBuscar, luego colocamos que el usuario, al hacer enter, lo lleve a la función de buscar la película y le pasamos el valor (lo que escribió la persona) -->
       <input #txtBuscar class="form-control me-9" type="search" placeholder="Buscar..." aria-label="Search">
       <button type="button" class="btn btn-dark" (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
     </div>
 
   </form>
 
->>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
 </div>

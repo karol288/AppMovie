@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .img{
   width: 55%;
   height: auto;
@@ -82,7 +82,8 @@ p{
 .actor-info{
   margin-top: 3%;
   margin-left: 9%;
-=======
+}
+
 .detalles-pelicula {
   text-align: center;
   color: #ffffff;
@@ -129,5 +130,4 @@ p{
 h2,
 h4 {
   margin-top: 20px;
->>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
 }
