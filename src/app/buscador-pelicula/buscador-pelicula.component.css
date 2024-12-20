@@ -1,18 +1,10 @@
 
-
   .buscar-pelicula{
     margin-left: 2%;
     margin-top: 7%;
     font-family: Arial, Helvetica, sans-serif;
   }
 
-
-
-.peliculas{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 
   .hover-scale:hover {
     transform: scale(1.1);
@@ -33,13 +25,3 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
   margin-top: 100px;
 }
-
-
-.buscar-pelicula {
-  color: #000000; /* Texto oscuro para mejor legibilidad */
-  font-weight: bold;
-  font-size: 2rem; /* Tamaño de fuente ligeramente más grande */
-  padding: 15px 20px; /* Espaciado más equilibrado */
-  margin-top: 100px;
-}
-

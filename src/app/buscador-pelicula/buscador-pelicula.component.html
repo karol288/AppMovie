@@ -1,4 +1,3 @@
-
 <!--Aca se van a mostrar las peliculas que el usuario esta buscando -->
 
 <div class="buscar-pelicula" style="color: antiquewhite;"><h3>Buscando pelicula: {{texto}}</h3></div>
@@ -8,30 +7,36 @@
 </div>
 
 <!--el contenedor de peliculas va a tener el diseño de las peliculas y va a mostrar las peliculas pedidas -->
-<div class=" d-flex flex-wrap justify-content-center">
+<div class="container mt-4"> <!-- Contenedor Bootstrap para alinear el contenido -->
+  <div class="row"> <!-- Fila para organizar las columnas -->
+    <div
+      *ngFor="let pelicula of peliculas"
+      class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex justify-content-center mb-4">
+      <!-- Configuración de columnas con un máximo de 5 por fila en pantallas grandes -->
 
-<div class="pelicula">
+      <div
+        class="card shadow-lg bg-dark text-light hover-scale"
+        style="width: 150px; height: 300px; cursor: pointer; overflow: hidden; border-radius: 0.5rem;">
 
-  <div *ngIf="peliculas.length > 0">
-    <div *ngFor="let pelicula of peliculas"
-    class="card m-2 shadow-lg bg-dark text-light hover-scale"
-    style="width: 150px; height: 300px; cursor: pointer; overflow: hidden; border-radius: 0.5rem;">
+        <img *ngIf="pelicula.poster_path"
+          (click)="clickPelicula(pelicula)"
+          class="card-img-top"
+          [src]="environments.imagenUrl + pelicula.poster_path"
+          alt="poster de la pelicula"
+          style="height: 192px; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;" />
+          <img *ngIf="!pelicula.poster_path"  style="height: 192px; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;"   class="card-img-top" src="/imagenes/img_no_encontrada.jpg" alt="imagen no encontrada">
 
+          <h3 class="titulo text-center text-white fw-semibold" style="font-size: 0.875rem; line-height: 1.2; word-wrap: break-word;">
+            {{ pelicula.title }}
+          </h3>
+        <div class="d-flex justify-content-center">
+          <i *ngFor="let estrella of estrellas(pelicula.vote_average)" class="bi bi-star-fill text-warning" style=" font-size: 0.6rem; margin-right: 0.2rem;">
+          </i>
+          <span class="fs-20 fw-bold">{{pelicula.vote_average | number:'1.1-1'}} </span><!--para mostrar solo un decimal usamor un filtro que me da solo dos decimales-->
+        </div>
 
-      <h3>{{ pelicula.title }}</h3>
-     <img (click)="clickPelicula(pelicula)" class="card-img-top" [src]="environments.imagenUrl + pelicula.poster_path" alt="poster de la pelicula" style="height: 192px; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;  " />
-
-     <h3 class="mt-2 text-center text-truncate" style="font-size: 0.875rem; font-weight: 600; color: white;">
-      {{ pelicula.title }}
-     </h3>
-     <div class="d-flex justify-content-center">
-      <i *ngFor="let estrella of estrellas(pelicula.vote_average)" class="bi bi-star-fill text-warning"></i>{{pelicula.vote_average | number:'1.1-1'}} <!--para mostrar solo un decimal usamor un filtro que me da solo dos decimales-->
-     </div>
-     <!--aca se esta pasando el titulo ya que este es una propiedad de la interface-->
-
-     <p class="text-center" style="font-size: 0.75rem; color: #9ca3af;">{{ pelicula.release_date }}</p>
+        <p class="text-center" style="font-size: 0.75rem; color: #9ca3af;">{{ pelicula.release_date }}</p>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-

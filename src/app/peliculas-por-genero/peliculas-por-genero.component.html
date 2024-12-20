@@ -24,11 +24,11 @@
       </h3>
 
       <!-- Puntuación -->
-      <div class="puntuacion-pelicula">
+      <div class="puntuacion-pelicula text-light">
         <i
           *ngFor="let estrella of estrellas(pelicula.vote_average)"
           class="bi bi-star-fill text-warning"
-          style="font-size: 0.65rem; margin-right: 0.2rem;"
+          style="font-size: 0.65rem; margin-right: 0.2rem; "
         ></i>
         {{ pelicula.vote_average | number: '1.1-1' }}
       </div>

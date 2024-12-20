@@ -1,19 +1,11 @@
 <div class="navbar">
-
-  <form class="d-flex" role="search">
-    <!-- Selección de género, se pasan los géneros al componente -->
+  <form class="d-flex">
     <select class="form-select" (change)="pasarAGenero($event)">
       <option value="" disabled selected>Selecciona un género</option>
-      <!-- Se iteran los géneros y se crea una opción para cada uno -->
       <option *ngFor="let genero of generos" [value]="genero.id">{{ genero.name }}</option>
     </select>
 
-    <div class="buscador">
-      <!-- En la línea 13 se coloca un identificador llamado txtBuscar, luego colocamos que el usuario, al hacer enter, lo lleve a la función de buscar la película y le pasamos el valor (lo que escribió la persona) -->
-      <input #txtBuscar class="form-control me-9" type="search" placeholder="Buscar..." aria-label="Search">
-      <button type="button" class="btn btn-dark" (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
-    </div>
-
+    <input #txtBuscar class="form-control" type="search" placeholder="Buscar...">
+    <button type="button" class="btn" (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
   </form>
-
 </div>

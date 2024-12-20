@@ -1,3 +1,12 @@
+/* .navbar{
+  margin: auto;
+  max-width: 300px;
+  margin-top: 100px ; /* reemplaza br */
+  /* margin-bottom: 50px;
+  text-align: center;
+}  */
+
+
 .navbar {
   margin-top: 6%;
   margin-bottom: 2%;
@@ -55,9 +64,3 @@ button.btn:hover {
 }
 
 
-.buscador{
-  margin: auto;
-  max-width: 300px;
-  margin-top: 100px ; /* reemplaza br */
-  margin-bottom: 50px;
-}

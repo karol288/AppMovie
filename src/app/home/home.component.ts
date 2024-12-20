@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit,inject } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { Pelicula } from '../models/peliculas.models';
@@ -9,11 +9,13 @@ import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [NavbarComponent, CommonModule, RouterModule],
+  imports: [NavbarComponent, CommonModule,RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+
 export class HomeComponent implements OnInit { // yo le digo implement onInit para decirle que a esta clase le voy a añadir una interface que lleva una funcion
+
 
   moviesList: Pelicula[] = []; // a moviesList la estoy tipando con Pelicula[] diciendole que lo que va a recibir debe llevar esa interface
 
@@ -24,13 +26,16 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
 
   private readonly moviesService = inject(MoviesService); //le inyecto la clase movieServe
 
-  private readonly router = inject(Router); //Para llevarme a la ruta de peliculaId
+  private readonly router = inject(Router); //Para llevarme a la ruta de productoId
+
 
   ngOnInit(): void {
     this.loadMovies(); // Cargamos las primeras películas al inicio pagina 1
   }
 
+
   loadMovies(): void { //void no haga nada pero si algo con los datos
+
     if (this.loading) return; // Evitar que se haga la solicitud si ya estamos cargando peliculas
 
     this.loading = true; // Activamos el estado de carga si pide mas peliculas
@@ -48,6 +53,7 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
 
         console.log(res.results);
 
+
         this.page++; // Aumentamos la página para la siguiente solicitud es decir pide otra pagina va pagina 1 que la 2 y asi sucesivamente
         console.log(this.page);
 
@@ -60,10 +66,12 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
     });
   }
 
+
   // Función para mandarme a la página de detalles-pelicula
   clickPelicula(movie: Pelicula): void {
     this.router.navigate([`/home`, movie.id]);  // Redirige a la ruta home/:peliculaId
   }
+
 
   // Detecta el scroll y carga más películas cuando llega al final
   @HostListener('window:scroll', []) // este es el que me va avisando cada que llega al final de la pagina la barrita
@@ -77,7 +85,8 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
 
     console.log('Scroll Position:', scrollPosition, 'Document Height:', documentHeight);
 
-    if (scrollPosition === documentHeight) { //el condicional importante, compara si son iguales posiciones es decir llego al final de la pagina
+
+    if (scrollPosition >= documentHeight -1 ) { //el condicional importante, compara si son iguales posiciones es decir llego al final de la pagina
       //le pasamos mas peliculas que loadMovies es la encargada de pasar mas peliculas
       this.loadMovies(); //ejecutamos la funcion loadMovies
     }
