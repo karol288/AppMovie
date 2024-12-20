@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import { MoviesService } from '../providers/peliculas.service';
 import { Pelicula } from '../models/peliculas.models';
 import { CommonModule } from '@angular/common';
@@ -7,11 +8,18 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-navbar', //nombre d mi componente
   imports: [CommonModule],
+=======
+
+@Component({
+  selector: 'app-navbar', //nombre d mi componente
+  imports: [],
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
   templateUrl: './navbar.component.html', //se llama la ruta de html para que este en el componente
   styleUrl: './navbar.component.css'
 })
 export class navbarComponent implements OnInit {
 
+<<<<<<< HEAD
   generos: any[] = [];  // Array para almacenar los géneros obtenidos de la API
 
 
@@ -51,6 +59,14 @@ export class navbarComponent implements OnInit {
 
   // Función para buscar películas
 
+=======
+ private readonly router = inject(Router); //agregamos el router
+
+  ngOnInit(): void {
+
+  }
+
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
   buscarPelicula(texto:string){ //va a recibir el texto desde el input
     texto = texto.trim(); //el trim elimina espacios en blanco que pudo haber puesto el usuario
     if (texto.length === 0){

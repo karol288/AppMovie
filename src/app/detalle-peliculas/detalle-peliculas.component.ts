@@ -59,6 +59,7 @@ export class DetallePeliculasComponent implements OnInit{
   }
 
   //funcion para el reparto
+<<<<<<< HEAD
   private getMovieCredits(movieId: string): void { //el void es para que no haga nada que simplemente haga algo con los datos
 
   this.moviesService.getCreditsMovie(movieId).subscribe({ //aca le vamos a pasar movieId y le vamos a decir suscribete para esperar una respuesta
@@ -70,11 +71,25 @@ export class DetallePeliculasComponent implements OnInit{
 
       this.actores =creditos.cast //entonces ya le digo de la respuesta de creditos sacame la de los cast que son los actores
       this.equipo = creditos.crew //aca le decimos pasale a la propiedad equipo los equipos que tiene la respuesta a la que nos suscribimos
+=======
+  private getMovieCredits(movieId: string): void {
+
+  this.moviesService.getCreditsMovie(movieId).subscribe({
+    next: (credits) => {
+
+      const creditos = credits as Creditos;
+
+      this.creditos = creditos
+
+      this.actores =creditos.cast
+      this.equipo = creditos.crew
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
       console.log('Créditos:', credits);
     },
     error: (error) => console.error('Error obteniendo créditos:', error)
   });}
 
+<<<<<<< HEAD
 
   //funcion para pasar puntos a estrellitas
   estrellas(votos:number){ //aca me va a recibir la puntuacion es decir el movie.vote_average
@@ -91,4 +106,6 @@ export class DetallePeliculasComponent implements OnInit{
         return Array(contadorEstrellas).fill(0) // aca el entero que recibe los va a convertir en ceros
         //si recibe 6 el arreglo va a ser [0 0 0 0 0 0] y esas van a ser las estrellas a mostrar
   }
+=======
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
 }

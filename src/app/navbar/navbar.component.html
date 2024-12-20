@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="navbar">
   <form class="d-flex">
     <select class="form-select" (change)="pasarAGenero($event)">
@@ -8,4 +9,24 @@
     <input #txtBuscar class="form-control" type="search" placeholder="Buscar...">
     <button type="button" class="btn" (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
   </form>
+=======
+
+<div class="navbar">
+
+  <form class="d-flex" role="search">
+    <select class="form-select form-select-sm" aria-label="Small select example" name="" id="">
+      <option selected>Generos</option>
+      <option value="romance">romance</option>
+      <option value="comedia">Comedia</option>
+      <option value="3">Three</option>
+
+    </select>
+    <div class="buscador"> <!--en la linea 13 se coloca un identificador llamado txtBuscar, luego colocamos que el usuario al hacer enter ((keyup.enter) lo lleve a la funcion de buscar la pelicula y le pasamos el valor es decir lo que escribio la persona )-->
+      <input #txtBuscar class="form-control me-9" type="search" placeholder="Buscar..." aria-label="Search">
+      <button type="button" class="btn btn-dark" (click)="buscarPelicula(txtBuscar.value)">Buscar</button>
+    </div>
+
+  </form>
+
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
 </div>

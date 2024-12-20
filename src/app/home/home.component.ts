@@ -26,7 +26,11 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
 
   private readonly moviesService = inject(MoviesService); //le inyecto la clase movieServe
 
+<<<<<<< HEAD
   private readonly router = inject(Router); //Para llevarme a la ruta de peliculaId
+=======
+  private readonly router = inject(Router); //Para llevarme a la ruta de productoId
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
 
 
   ngOnInit(): void {
@@ -34,7 +38,11 @@ export class HomeComponent implements OnInit { // yo le digo implement onInit pa
   }
 
 
+<<<<<<< HEAD
   loadMovies(): void { //void no haga nada pero si algo con los datos
+=======
+  loadMovies(): void {
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
 
     if (this.loading) return; // Evitar que se haga la solicitud si ya estamos cargando peliculas
 

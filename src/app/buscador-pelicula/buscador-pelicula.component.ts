@@ -8,12 +8,17 @@ import { Pelicula } from '../models/peliculas.models';
 
 @Component({
   selector: 'app-buscador-pelicula',
+<<<<<<< HEAD
   imports: [CommonModule, RouterModule,],
+=======
+  imports: [CommonModule, RouterModule],
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
   templateUrl: './buscador-pelicula.component.html',
   styleUrl: './buscador-pelicula.component.css'
 })
 export class BuscadorPeliculaComponent implements OnInit {
 
+<<<<<<< HEAD
   environments = environment //usar ruta de la imagen de la pelicula
 
   private readonly Activeroute = inject(ActivatedRoute); // este es para el params en buscar pelicula
@@ -22,10 +27,19 @@ export class BuscadorPeliculaComponent implements OnInit {
 
   private readonly service = inject(MoviesService) //inyectamos el servicio
 
+=======
+  environments = environment //usar ruta de la imagen
+
+  private readonly route = inject(ActivatedRoute); // este es para el params en buscar pelicula
+
+  private readonly router = inject(Router);//este es para el click peliculas
+
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
   //lo siguiente va a ser el buscador de peliculas
 
   peliculas: any[] = []; // Aquí se guardaran los resultados de las búsquedas
   texto: string = ''; // Para almacenar el texto que ingresa el usuario
+<<<<<<< HEAD
   noPelicula: string = ''; //por si no encuentra la pelicula esta va a guardar el mensaje de error
 
 
@@ -33,6 +47,16 @@ export class BuscadorPeliculaComponent implements OnInit {
   //esta va a ser la encargada de buscar el texto y ejecutar la funcion buscar peliculas esto es lo primero que va a hacer
   ngOnInit(): void {
     this.Activeroute.params.subscribe(params => {//aca se prepara todo para lo que van a escuchar en la ruta
+=======
+  noPelicula: string = ''; //por si no encuentra la pelicula esta va a gusrdar el mensaje de error
+
+
+  constructor( private service: MoviesService) {}
+
+  //esta va a ser la encargada de buscar el texto y ejecutar la funcion buscar peliculas
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {//aca se prepara todo para lo que van a escuchar en la ruta
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
       this.texto = params['texto']; // Aca le estamos pasandoa texto  el parametro de texto, en texto se guardara lo que el usuario escribio en el buscador
       this.buscarPeliculas(); // Llamas a la función para hacer la búsqueda
     });
@@ -44,6 +68,7 @@ export class BuscadorPeliculaComponent implements OnInit {
   //esta funcion va a ser la encargada de buscar la pelicula por el texto
   buscarPeliculas() {
     this.service.getMovie(this.texto).subscribe((res: any) => { //decir que res va ser de tipo any es porqueel va a recibir cualquier tipo de dato
+<<<<<<< HEAD
       if (res.results && res.results.length === 0){ // es decir si no hay ninguna pelicula diga que no hay pelicula
         this.noPelicula = 'pelicula no encontrada'
       } else {
@@ -53,6 +78,17 @@ export class BuscadorPeliculaComponent implements OnInit {
       console.log(this.noPelicula);
 
 
+=======
+      if (res.results &&res.results.length === 0){
+        this.noPelicula = 'pelicula no encontrada'
+      } else {
+        this.noPelicula = ''; // Limpia el mensaje si hay resultados
+        this.peliculas = res.results; // Guarda las películas encontradas
+      }
+      console.log(this.noPelicula);
+
+      //this.peliculas = res.results; // Asumiendo que la API devuelve una lista bajo "results" que es donde guarda el array de peliculas
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
     });
   }
 
@@ -60,7 +96,11 @@ export class BuscadorPeliculaComponent implements OnInit {
 
 
   // Función para mandarme a la página de detalles-pelicula
+<<<<<<< HEAD
   clickPelicula(movie: Pelicula): void { //tipo a movie como pelicula
+=======
+  clickPelicula(movie: Pelicula): void {
+>>>>>>> bfe7dbeb53c41c42ee059391829539e396deede3
     this.router.navigate([`/home`, movie.id]);  // Redirige a la ruta home/:peliculaId
   }
 
